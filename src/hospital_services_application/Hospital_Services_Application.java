@@ -22,7 +22,7 @@ public class Hospital_Services_Application {
                 + " - Appointment At hospital \n "
                 + "-Convert the language into Arabic\n"
                 + "------------------------------------");
-        System.out.println("Select your services from the menu: ");
+        System.out.println("Select your service from the menu: ");
         String choice = r.nextLine();
 
         if (choice.equalsIgnoreCase("Online Consultaion Appointment")) {
@@ -55,7 +55,7 @@ public class Hospital_Services_Application {
             System.out.print("أدخل التكلفة الإجمالية:");
             tcost = rr.nextInt();     
     }
-        ApooinentmentSelection s1 = new ApooinentmentSelection();
+        BookingAnAppointment s1 = new BookingAnAppointment();
         Appointment a = s1.selection(t, number, tcost);
           if (a instanceof OnlineConsultaionAppointment) {
             a.cost(tcost);
@@ -69,7 +69,7 @@ public class Hospital_Services_Application {
         }//end of convert method
         //-------------------------------------------------------------
         System.out.print("select from the menu: ");
-        int num = rr.nextInt();
+        int appointmentID = rr.nextInt();
 
         System.out.print("Enter your total cost: ");
         int cost = rr.nextInt();
@@ -79,15 +79,15 @@ public class Hospital_Services_Application {
             cost = rr.nextInt();
         }
 
-        ApooinentmentSelection s1 = new ApooinentmentSelection();
-        Appointment a = s1.selection(choice, num, cost);
-        Appointment a2 = s1.selection(choice, num, cost);
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection(choice, appointmentID, cost);
+      
         if (a instanceof OnlineConsultaionAppointment) {
             a.cost(cost);
             a.reservationInfo();
-        } else if (a2 instanceof AppointmentAtHospital) {
-            a2.cost(cost);
-            a2.reservationInfo();
+        } else if (a instanceof AppointmentAtHospital) {
+            a.cost(cost);
+            a.reservationInfo();
 
         }
           
