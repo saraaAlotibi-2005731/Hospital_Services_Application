@@ -2,7 +2,7 @@ package hospital_services_application;
 
 
 
-public class ApooinentmentSelection {
+public class BookingAnAppointment {
 
     public static Appointment selection(String s, int num, int price) {
         

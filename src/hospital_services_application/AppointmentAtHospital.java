@@ -4,8 +4,8 @@ package hospital_services_application;
 
 public class AppointmentAtHospital extends Appointment {
 
-    public AppointmentAtHospital(String Type, int price, int Anum) {
+    public AppointmentAtHospital(String Type, int appointmentID, int price) {
         
-        super(Type, price, Anum);
+        super(Type, appointmentID, price);
     }
 }

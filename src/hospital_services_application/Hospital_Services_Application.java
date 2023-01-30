@@ -14,7 +14,7 @@ public class Hospital_Services_Application {
         ArrayList at_hospital = Database.get_appointment_info();
         ArrayList Online = Database.get_appointment_online();
         String choice;
-        int num = -1;
+        int appointmentID = -1;
         int cost = 0;
         String second_choice = "";
         
@@ -58,9 +58,9 @@ public class Hospital_Services_Application {
                 do {
 
                     System.out.print("اختر من القائمة: ");
-                    num = rr.nextInt();
+                    appointmentID = rr.nextInt();
 
-                } while (num < 0 || num > 2);
+                } while (appointmentID < 0 || appointmentID > 2);
 
                 System.out.print("أدخل التكلفة الإجمالية: ");
                 cost = rr.nextInt();
@@ -80,9 +80,9 @@ public class Hospital_Services_Application {
             do {
 
                 System.out.print("select from the menu: ");
-                num = rr.nextInt();
+                appointmentID = rr.nextInt();
 
-            } while (num < 0 || num > 2);
+            } while (appointmentID < 0 || appointmentID > 2);
 
             System.out.print("Enter your total cost: ");
             cost = rr.nextInt();
@@ -100,9 +100,9 @@ public class Hospital_Services_Application {
             choice = second_choice;
         }
         
-        ApooinentmentSelection s1 = new ApooinentmentSelection();
-        Appointment a = s1.selection(choice, num, cost);
-        Appointment a2 = s1.selection(choice, num, cost);
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection(choice, appointmentID, cost);
+        Appointment a2 = s1.selection(choice, appointmentID, cost);
         
         if (a instanceof OnlineConsultaionAppointment) {
             

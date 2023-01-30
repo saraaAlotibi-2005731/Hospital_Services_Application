@@ -152,7 +152,7 @@ public class Hospital_Services_Application_MsinInterface extends javax.swing.JFr
                 //jPanel2.add(Hana.png).setVisible(true);
                 JFrame frame = new JFrame("FooRendererTest");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.getContentPane().add(jPanel1); // or whatever...
+               // frame.getContentPane().add(jPanel1); // or whatever...
                 frame.pack();
                 frame.setLocationRelativeTo(null);  // *** this will center your app ***
                 frame.setVisible(true);
