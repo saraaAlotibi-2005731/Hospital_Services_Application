@@ -1,4 +1,6 @@
 package hospital_services_application;
+
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -139,6 +141,7 @@ public class Hospital_Services_Application_MsinInterface extends javax.swing.JFr
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Hospital_Services_Application_MsinInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         /* Create and display the form */
