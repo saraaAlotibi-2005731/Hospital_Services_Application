@@ -4,9 +4,9 @@ package hospital_services_application;
 
 public abstract class Appointment {
 
-    int appointmentID;
-    int price;
-    String type;
+    private int appointmentID;
+    private int price;
+    private String type;
 
     public Appointment(String Type, int appointmentID, int price) {
         
