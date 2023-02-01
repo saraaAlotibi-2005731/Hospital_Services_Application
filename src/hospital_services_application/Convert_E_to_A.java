@@ -18,7 +18,7 @@ public class Convert_E_to_A implements Arabic  {
         
         Scanner r = new Scanner(System.in);
         ArrayList at_hospital = Database.get_arabic_appointment_info();
-        ArrayList Online = Database.get_arabic_appointment_online();
+        ArrayList Online = Database.get_arabic_appointment_info();
         
         do {
             
@@ -53,7 +53,7 @@ public class Convert_E_to_A implements Arabic  {
                 System.out.println("---------------------------------------------------");
             }
             
-        }while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital"))));
+        }while ((!(choice.equals("Online Consultaion Appointment")) && !(choice.equals("Appointment At hospital"))));
         
         return choice;
     }

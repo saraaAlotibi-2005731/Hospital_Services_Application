@@ -6,16 +6,11 @@ import java.util.*;
 public class Hospital_Services_Application {
 
     public static void main(String[] args) throws FileNotFoundException {
-        theMinu();
-           
-    }
 
-    public static void theMinu() throws FileNotFoundException {
         Scanner r = new Scanner(System.in);
         Scanner rr = new Scanner(System.in);
-        ArrayList Online = Database.get_appointment_online();
         ArrayList at_hospital = Database.get_appointment_info();
-
+        ArrayList Online = Database.get_appointment_online();
         String choice;
         int appointmentID = -1;
         int cost = 0;
@@ -32,8 +27,23 @@ public class Hospital_Services_Application {
             choice = r.nextLine();
 
             if (choice.equalsIgnoreCase("Online Consultaion Appointment")) {
-                OnlineConsultationINFO(Online);  
 
+                System.out.println("----------------Online consultation INFO------------");
+                for (int i = 0; i < Online.size(); i++) {
+
+                    System.out.println(Online.get(i));
+                }
+
+                System.out.println("---------------------------------------------------");
+
+            } else if (choice.equalsIgnoreCase("Appointment At hospital")) {
+
+                System.out.println("--------------Appointment At hospital INFO-------------");
+                for (int i = 0; i < at_hospital.size(); i++) {
+
+                    System.out.println(at_hospital.get(i));
+                }
+                System.out.println("--------------------------------------------------------");
             } //----------------------------------------------------------------------------------
             else if (choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
@@ -56,34 +66,14 @@ public class Hospital_Services_Application {
                     System.out.print("أدخل التكلفة الإجمالية:");
                     cost = rr.nextInt();
                 }
-            }  else if (choice.equalsIgnoreCase("Notifications")){
-                    Notifications PatientaccNotifications= new Notifications();
-                    NotificationsScreen screen= new NotificationsScreen();
-                    screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
-                    screen.ClickOnNotifications();
-              }
-             
-        } while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital")) && !(choice.equalsIgnoreCase("Convert the language into Arabic"))));
-
-        if (!choice.equalsIgnoreCase("Convert the language into Arabic")) {
-
-            do {
-
-                System.out.print("select from the menu: ");
-                appointmentID = rr.nextInt();
-
-            } while (appointmentID < 0 || appointmentID > 2);
-
-            System.out.print("Enter your total cost: ");
-            cost = rr.nextInt();
-
-            while (cost != 150) {
-
-                System.out.println("payment method fail!! Try again.. ");
-                System.out.print("Enter your total cost: ");
-                cost = rr.nextInt();
+            } else if (choice.equalsIgnoreCase("Notifications")) {
+                Notifications PatientaccNotifications = new Notifications();
+                NotificationsScreen screen = new NotificationsScreen();
+                screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
+                screen.ClickOnNotifications();
             }
-        }
+
+        } while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital")) && !(choice.equalsIgnoreCase("Convert the language into Arabic"))));
 
         if (choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
@@ -103,17 +93,5 @@ public class Hospital_Services_Application {
             a2.cost(cost);
             a2.reservationInfo();
         }
-
-    }
-
-    public static void OnlineConsultationINFO(ArrayList Online) {
-        System.out.println("----------------Online consultation INFO------------");
-        for (int i = 0; i < Online.size(); i++) {
-
-            System.out.println(Online.get(i));
-        }
-
-        System.out.println("---------------------------------------------------");
-
     }
 }

@@ -90,25 +90,25 @@ public class Database {
     }
     
     public static ArrayList get_arabic_appointment_online() throws FileNotFoundException {
-        
-        if(DB == null){
-            
+
+        if (DB == null) {
+
             DB = new Database();
-    	}
-	
+        }
+
         if (!arabic_online.exists()) {
-            
-            System.out.println("‏‏arabic_appointment_online.txt file is not found, Please try again.");
+
+            System.out.println("appointment_online.txt file is not found, Please try again.");
             System.exit(0);
         }
-        
+
         Scanner reader = new Scanner(arabic_online);
-        
+
         while (reader.hasNext()) {
-            
+
             arabic_appointment_online.add(reader.nextLine());
         }
-        
-	return DB.arabic_appointment_online;
+
+        return DB.arabic_appointment_online;
     }
 }
