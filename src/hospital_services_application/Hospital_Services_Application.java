@@ -7,8 +7,7 @@ public class Hospital_Services_Application {
 
     public static void main(String[] args) throws FileNotFoundException {
         theMinu();
-
-        
+           
     }
 
     public static void theMinu() throws FileNotFoundException {
@@ -26,6 +25,7 @@ public class Hospital_Services_Application {
             System.out.println("-------- Hospital services ---------\n - Online Consultaion Appointment\n"
                     + " - Appointment At hospital\n"
                     + " - Convert the language into Arabic\n"
+                    + " - Notifications\n"
                     + "------------------------------------");
 
             System.out.println("Select your services from the menu: ");
@@ -56,8 +56,13 @@ public class Hospital_Services_Application {
                     System.out.print("أدخل التكلفة الإجمالية:");
                     cost = rr.nextInt();
                 }
-            }
-
+            }  else if (choice.equalsIgnoreCase("Notifications")){
+                    Notifications PatientaccNotifications= new Notifications();
+                    NotificationsScreen screen= new NotificationsScreen();
+                    screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
+                    screen.ClickOnNotifications();
+              }
+             
         } while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital")) && !(choice.equalsIgnoreCase("Convert the language into Arabic"))));
 
         if (!choice.equalsIgnoreCase("Convert the language into Arabic")) {
