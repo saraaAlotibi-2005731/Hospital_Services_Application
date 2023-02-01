@@ -33,4 +33,17 @@ public abstract class Appointment {
 
         } 
     }
+
+    public int getAppointmentID() {
+        return appointmentID;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public String getType() {
+        return type;
+    }
+    
 }

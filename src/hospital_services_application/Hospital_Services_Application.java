@@ -15,6 +15,7 @@ public class Hospital_Services_Application {
         int appointmentID = -1;
         int cost = 0;
         String second_choice = "";
+        Convert_E_to_A translator = new Convert_E_to_A();
 
         do {
             System.out.println("-------- Hospital services ---------\n - Online Consultaion Appointment\n"
@@ -34,7 +35,7 @@ public class Hospital_Services_Application {
             } //----------------------------------------------------------------------------------
             else if (choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
-                Convert_E_to_A translator = new Convert_E_to_A();
+                 
                 second_choice = translator.Print_Arabic();
 
                 do {
@@ -54,8 +55,9 @@ public class Hospital_Services_Application {
                     cost = rr.nextInt();
                 }
             } else if (choice.equalsIgnoreCase("Notifications")) {
-                notivication();
+               
             }
+            
 
         } while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital")) && !(choice.equalsIgnoreCase("Convert the language into Arabic"))));
         if (!choice.equalsIgnoreCase("Convert the language into Arabic")) {
@@ -85,15 +87,13 @@ public class Hospital_Services_Application {
         BookingAnAppointment s1 = new BookingAnAppointment();
         Appointment a = s1.selection(choice, appointmentID, cost);
         Appointment a2 = s1.selection(choice, appointmentID, cost);
-
         if (a instanceof OnlineConsultaionAppointment) {
-
-            a.cost(cost);
-            a.reservationInfo();
+            
+           translator.print_Arabic_cost(cost);
+             translator.Print_Arabic_reservation(a);
         } else if (a2 instanceof AppointmentAtHospital) {
-
-            a2.cost(cost);
-            a2.reservationInfo();
+          translator.print_Arabic_cost(cost);
+             translator.Print_Arabic_reservation(a);
         }
     }
 

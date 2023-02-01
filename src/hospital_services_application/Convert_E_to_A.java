@@ -1,11 +1,12 @@
 package hospital_services_application;
 
+import static hospital_services_application.Hospital_Services_Application.notivication;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Convert_E_to_A implements Arabic  {
-
+Appointment Appointment;
     String choice = "";
             
     @Override
@@ -21,6 +22,7 @@ public class Convert_E_to_A implements Arabic  {
 
             System.out.println("-------- خدمات المستشفى---------\n 1- مواعيد الاستشارة عبر الإنترنت\n"
                     + " 2- مواعيد في المستشفى \n "
+                     + " 3- تفعيل الإشعارات \n "
                     + "------------------------------------");
 
             System.out.println("ادخل الخدمه التي تريدها :");
@@ -30,7 +32,12 @@ public class Convert_E_to_A implements Arabic  {
                 choice = "Appointment At hospital";
             }else if (c == 2) {
                 choice = "Online Consultaion Appointment";
-            } 
+            }
+            else{ notivication();
+              System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
+            }
+            
+            
             
             if (choice.equals("Appointment At hospital")) {
 
@@ -57,4 +64,27 @@ public class Convert_E_to_A implements Arabic  {
 
         return choice;
     }
-}
+        @Override
+    public void Print_Arabic_reservation(Appointment a) throws FileNotFoundException{
+            
+        System.out.println("شكرا لك  :) ");
+        System.out.println("--------------معلومات الحجز------------------------------");
+        System.out.println("رقم الموعد: " +a.getAppointmentID() + " أضيف إلى ملف التعريف الخاص بك");
+        System.out.println("نوع الموعد: " + a.getType());
+        System.out.println("تكلفة الموعد = " + a.getCost());
+        System.out.println("------------------------------------------------------------");
+    }
+     @Override
+    public void print_Arabic_cost(int cost) {
+        int price = 150;
+        if (cost == price) {
+            
+            System.out.println("تمت طريقة الدفع بنجاح بمبلغ "+cost+"  ريال \n");
+
+        } 
+    }
+
+ 
+    
+    }
+
