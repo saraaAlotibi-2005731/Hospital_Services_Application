@@ -153,12 +153,11 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        Scanner rr = new Scanner(System.in);
-//        try {
-//            EToA(rr);
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+         try {
+            Hospital_Services_Application.Convert_Appointment();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
