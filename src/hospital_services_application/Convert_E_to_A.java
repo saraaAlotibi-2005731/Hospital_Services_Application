@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Convert_E_to_A implements Arabic  {
-Appointment Appointment;
-    String choice = "";
+public Appointment Appointment;
+   public String choice = "";
             
     @Override
     public String Print_Arabic() throws FileNotFoundException {
