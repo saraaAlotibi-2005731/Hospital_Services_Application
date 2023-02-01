@@ -27,23 +27,10 @@ public class Hospital_Services_Application {
             choice = r.nextLine();
 
             if (choice.equalsIgnoreCase("Online Consultaion Appointment")) {
-
-                System.out.println("----------------Online consultation INFO------------");
-                for (int i = 0; i < Online.size(); i++) {
-
-                    System.out.println(Online.get(i));
-                }
-
-                System.out.println("---------------------------------------------------");
+                OnlineConsultaionAppointment(Online);
 
             } else if (choice.equalsIgnoreCase("Appointment At hospital")) {
-
-                System.out.println("--------------Appointment At hospital INFO-------------");
-                for (int i = 0; i < at_hospital.size(); i++) {
-
-                    System.out.println(at_hospital.get(i));
-                }
-                System.out.println("--------------------------------------------------------");
+                AppointmentAtHospitalINFO(at_hospital);
             } //----------------------------------------------------------------------------------
             else if (choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
@@ -67,14 +54,29 @@ public class Hospital_Services_Application {
                     cost = rr.nextInt();
                 }
             } else if (choice.equalsIgnoreCase("Notifications")) {
-                Notifications PatientaccNotifications = new Notifications();
-                NotificationsScreen screen = new NotificationsScreen();
-                screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
-                screen.ClickOnNotifications();
+                notivication();
             }
 
         } while ((!(choice.equalsIgnoreCase("Online Consultaion Appointment")) && !(choice.equalsIgnoreCase("Appointment At hospital")) && !(choice.equalsIgnoreCase("Convert the language into Arabic"))));
+        if (!choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
+            do {
+
+                System.out.print("select from the menu: ");
+                appointmentID = rr.nextInt();
+
+            } while (appointmentID < 0 || appointmentID > 2);
+
+            System.out.print("Enter your total cost: ");
+            cost = rr.nextInt();
+
+            while (cost != 150) {
+
+                System.out.println("payment method fail!! Try again.. ");
+                System.out.print("Enter your total cost: ");
+                cost = rr.nextInt();
+            }
+        }
         if (choice.equalsIgnoreCase("Convert the language into Arabic")) {
 
             choice = second_choice;
@@ -93,5 +95,91 @@ public class Hospital_Services_Application {
             a2.cost(cost);
             a2.reservationInfo();
         }
+    }
+
+    // COMMAND PATTERN-------------------------------------------------
+    public static void notivication() {
+        Notifications PatientaccNotifications = new Notifications();
+        NotificationsScreen screen = new NotificationsScreen();
+        screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
+        screen.ClickOnNotifications();
+    }
+
+    // FACTORY PATTERN1-------------------------------------------------
+    public static void OnlineConsultaionAppointment(ArrayList Online) throws FileNotFoundException {
+        Scanner rr = new Scanner(System.in);
+        int appointmentID = -1;
+        int cost = 0;
+        System.out.println("----------------Online consultation INFO------------");
+        for (int i = 0; i < Online.size(); i++) {
+
+            System.out.println(Online.get(i));
+        }
+
+        System.out.println("---------------------------------------------------");
+
+        do {
+
+            System.out.print("select from the menu: ");
+            appointmentID = rr.nextInt();
+
+        } while (appointmentID < 0 || appointmentID > 2);
+
+        System.out.print("Enter your total cost: ");
+        cost = rr.nextInt();
+
+        while (cost != 150) {
+
+            System.out.println("payment method fail!! Try again.. ");
+            System.out.print("Enter your total cost: ");
+            cost = rr.nextInt();
+        }
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection("Online Consultaion Appointment", appointmentID, cost);
+
+        if (a instanceof OnlineConsultaionAppointment) {
+            a.cost(cost);
+            a.reservationInfo();
+        }
+
+    }
+    // FACTORY PATTERN1-------------------------------------------------
+
+    public static void AppointmentAtHospitalINFO(ArrayList at_hospital) throws FileNotFoundException {
+        Scanner rr = new Scanner(System.in);
+        int appointmentID = -1;
+        int cost = 0;
+                System.out.println("--------------Appointment At hospital INFO-------------");
+                for (int i = 0; i < at_hospital.size(); i++) {
+
+                    System.out.println(at_hospital.get(i));
+                }
+                System.out.println("--------------------------------------------------------");
+
+        do {
+
+            System.out.print("select from the menu: ");
+            appointmentID = rr.nextInt();
+
+        } while (appointmentID < 0 || appointmentID > 2);
+
+        System.out.print("Enter your total cost: ");
+        cost = rr.nextInt();
+
+        while (cost != 150) {
+
+            System.out.println("payment method fail!! Try again.. ");
+            System.out.print("Enter your total cost: ");
+            cost = rr.nextInt();
+        }
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection("Appointment At hospital", appointmentID, cost);
+
+        if (a instanceof AppointmentAtHospital) {
+
+            a.cost(cost);
+            a.reservationInfo();
+        }
+
     }
 }
