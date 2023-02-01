@@ -10,9 +10,8 @@ import java.util.logging.Logger;
 public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     private ImageIcon image;
     private JLabel lablel;
-    /**
-     * Creates new form Hospital_Services_Application_MsinInterface
-     */
+
+    
     public Hospital_Services_Application_facade() {
         initComponents();
     }
