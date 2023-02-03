@@ -55,7 +55,7 @@ public Appointment Appointment;
                 Online.clear();
             }
             
-            else{ notivication();
+            else{ notificationOn();
               System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
                
             }

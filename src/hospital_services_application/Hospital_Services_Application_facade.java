@@ -281,10 +281,16 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         DB.clear();
     }
     
-    public static void notivication() {
+    public static void notificationOn() {
         Notifications PatientaccNotifications = new Notifications();
         NotificationsScreen screen = new NotificationsScreen();
         screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
+        screen.ClickOnNotifications();
+    }
+    public static void notificationOff() {
+        Notifications PatientaccNotifications = new Notifications();
+        NotificationsScreen screen = new NotificationsScreen();
+        screen.SetCommand(new TurnOffNotifications(PatientaccNotifications));
         screen.ClickOnNotifications();
     }
     
