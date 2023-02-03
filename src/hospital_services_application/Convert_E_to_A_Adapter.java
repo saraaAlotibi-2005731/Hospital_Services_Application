@@ -1,5 +1,6 @@
 package hospital_services_application;
 
+import static hospital_services_application.Hospital_Services_Application_facade.notificationOff;
 import static hospital_services_application.Hospital_Services_Application_facade.notificationOn;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Convert_E_to_A_Adapter implements Arabic {
 public Appointment Appointment;
    public String choice = "";
+   
             
     @Override
     public String Print_Arabic() throws FileNotFoundException {
@@ -23,6 +25,7 @@ public Appointment Appointment;
             System.out.println("-------- خدمات المستشفى---------\n 1- مواعيد الاستشارة عبر الإنترنت\n"
                     + " 2- مواعيد في المستشفى \n "
                     + " 3- تفعيل الإشعارات \n "
+                    + " 4- تعطيل الإشعارات \n "
                     + "------------------------------------");
 
             System.out.println("ادخل الخدمه التي تريدها :");
@@ -55,10 +58,15 @@ public Appointment Appointment;
                 Online.clear();
             }
             
-            else{ notificationOn();
+            else if (c == 3){ notificationOn();
               System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
                
             }
+            else { notificationOff();
+               System.out.println("إشعارات تطبيق خدمات المستشفى متوقفة "); 
+               
+            }
+            
 
         } while ((!(choice.equals("Online Consultaion Appointment")) && !(choice.equals("Appointment At hospital"))));
 
