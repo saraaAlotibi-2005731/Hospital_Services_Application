@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Convert_E_to_A implements Arabic {
+public class Convert_E_to_A_Adapter implements Arabic {
 public Appointment Appointment;
    public String choice = "";
             
