@@ -1,7 +1,5 @@
 package hospital_services_application;
 
-
-
 public class BookingAnAppointment {
 
     public static Appointment selection(String s, int appointmentID, int cost) {

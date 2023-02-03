@@ -3,6 +3,7 @@ package hospital_services_application;
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,7 +11,7 @@ import java.util.logging.Logger;
 public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     private ImageIcon image;
     private JLabel lablel;
-
+    private static ArrayList DB;
     
     public Hospital_Services_Application_facade() {
         initComponents();
@@ -77,6 +78,11 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         });
 
         jButton5.setText("Database (Singeltone)");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,10 +111,9 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE))
                 .addGap(114, 114, 114))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,34 +153,40 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Hospital_Services_Application.notivication();
+        notivication();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
          try {
-            Hospital_Services_Application.Convert_Appointment();
+            Convert_Appointment();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
-            Hospital_Services_Application.OnlineConsultaionAppointment(Database.get_appointment_online());
+            OnlineConsultaionAppointment();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         try {
-            Hospital_Services_Application.AppointmentAtHospitalINFO(Database.get_appointment_info());
+            AppointmentAtHospitalINFO();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        try {
+            database_record();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Hospital_Services_Application_facade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,4 +240,175 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    public static void database_record() throws FileNotFoundException {
+       
+        DB = Database.get_appointment_info();
+
+        System.out.println("--------------Appointment At hospital INFO-------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+        
+        DB.clear();
+        DB = Database.get_appointment_online();
+        
+        System.out.println("----------------Online consultation INFO------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+        
+        DB.clear();
+        DB = Database.get_arabic_appointment_info();
+        
+        System.out.println("--------------تفاصيل المواعيد المتاحة في المستشفى-------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+        
+        DB.clear();
+        DB = Database.get_arabic_appointment_online();
+        
+        System.out.println("----------------تفاصيل مواعيد الاستشارة عبر الإنترنت------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+        
+        DB.clear();
+    }
+    
+    public static void notivication() {
+        Notifications PatientaccNotifications = new Notifications();
+        NotificationsScreen screen = new NotificationsScreen();
+        screen.SetCommand(new TurnOnNotifications(PatientaccNotifications));
+        screen.ClickOnNotifications();
+    }
+    
+    public static void OnlineConsultaionAppointment() throws FileNotFoundException {
+        Scanner rr = new Scanner(System.in);
+        int appointmentID = -1;
+        int cost = 0;
+        DB = Database.get_appointment_online();
+        
+        System.out.println("----------------Online consultation INFO------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+
+        System.out.println("---------------------------------------------------");
+
+        do {
+
+            System.out.print("select from the menu: ");
+            appointmentID = rr.nextInt();
+
+        } while (appointmentID < 0 || appointmentID > 2);
+
+        System.out.print("Enter your total cost: ");
+        cost = rr.nextInt();
+
+        while (cost != 150) {
+
+            System.out.println("payment method fail!! Try again.. ");
+            System.out.print("Enter your total cost: ");
+            cost = rr.nextInt();
+        }
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection("Online Consultaion Appointment", appointmentID, cost);
+
+        if (a instanceof OnlineConsultaionAppointment) {
+            a.cost(cost);
+            a.reservationInfo();
+        }
+        
+        DB.clear();
+    }
+    
+    public static void AppointmentAtHospitalINFO() throws FileNotFoundException {
+        
+        Scanner rr = new Scanner(System.in);
+        int appointmentID = -1;
+        int cost = 0;
+        DB = Database.get_appointment_info();
+        
+        System.out.println("--------------Appointment At hospital INFO-------------");
+        for (int i = 0; i < DB.size(); i++) {
+
+            System.out.println(DB.get(i));
+        }
+        System.out.println("--------------------------------------------------------");
+
+        do {
+
+            System.out.print("select from the menu: ");
+            appointmentID = rr.nextInt();
+
+        } while (appointmentID < 0 || appointmentID > 2);
+
+        System.out.print("Enter your total cost: ");
+        cost = rr.nextInt();
+
+        while (cost != 150) {
+
+            System.out.println("payment method fail!! Try again.. ");
+            System.out.print("Enter your total cost: ");
+            cost = rr.nextInt();
+        }
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection("Appointment At hospital", appointmentID, cost);
+
+        if (a instanceof AppointmentAtHospital) {
+
+            a.cost(cost);
+            a.reservationInfo();
+        }
+
+        DB.clear();
+    }
+    
+    public static void Convert_Appointment() throws FileNotFoundException {
+        Scanner rr = new Scanner(System.in);
+        String choice;
+        int appointmentID = -1;
+        int cost = 0;
+        String second_choice = "";
+        Convert_E_to_A translator = new Convert_E_to_A();
+        second_choice = translator.Print_Arabic();
+
+        do {
+
+            System.out.print("اختر من القائمة: ");
+            appointmentID = rr.nextInt();
+
+        } while (appointmentID < 0 || appointmentID > 2);
+
+        System.out.print("أدخل التكلفة الإجمالية: ");
+        cost = rr.nextInt();
+
+        while (cost != 150) {
+
+            System.out.println("طريقة الدفع فشلت !! حاول مرة أخرى ...");
+            System.out.print("أدخل التكلفة الإجمالية:");
+            cost = rr.nextInt();
+        }
+        choice = second_choice;
+        BookingAnAppointment s1 = new BookingAnAppointment();
+        Appointment a = s1.selection(choice, appointmentID, cost);
+        Appointment a2 = s1.selection(choice, appointmentID, cost);
+
+        if (a instanceof OnlineConsultaionAppointment) {
+
+            a.cost(cost);
+            a.reservationInfo();
+        } else if (a2 instanceof AppointmentAtHospital) {
+
+            a2.cost(cost);
+            a2.reservationInfo();
+        }
+    }
 }

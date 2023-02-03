@@ -1,7 +1,5 @@
 package hospital_services_application;
 
-
-
 public abstract class Appointment {
 
     private int appointmentID;
@@ -26,24 +24,27 @@ public abstract class Appointment {
     }
 
     public void cost(int costt) {
+        
         int price = 150;
+        
         if (costt == price) {
             
             System.out.println("The payment moethod has done successfully with 150 Rs \n");
-
         } 
     }
 
     public int getAppointmentID() {
+        
         return appointmentID;
     }
 
     public int getCost() {
+        
         return cost;
     }
 
     public String getType() {
+        
         return type;
     }
-    
 }

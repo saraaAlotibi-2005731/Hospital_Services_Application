@@ -1,11 +1,11 @@
 package hospital_services_application;
 
-import static hospital_services_application.Hospital_Services_Application.notivication;
+import static hospital_services_application.Hospital_Services_Application_facade.notivication;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Convert_E_to_A implements Arabic  {
+public class Convert_E_to_A implements Arabic {
 public Appointment Appointment;
    public String choice = "";
             
@@ -16,31 +16,21 @@ public Appointment Appointment;
         
         Scanner r = new Scanner(System.in);
         ArrayList at_hospital = Database.get_arabic_appointment_info();
-        ArrayList Online = Database.get_arabic_appointment_info();
+        ArrayList Online = Database.get_arabic_appointment_online();
         
         do {
 
             System.out.println("-------- خدمات المستشفى---------\n 1- مواعيد الاستشارة عبر الإنترنت\n"
                     + " 2- مواعيد في المستشفى \n "
-                     + " 3- تفعيل الإشعارات \n "
+                    + " 3- تفعيل الإشعارات \n "
                     + "------------------------------------");
 
             System.out.println("ادخل الخدمه التي تريدها :");
             int c = r.nextInt();
 
-            if (c == 1) {
+            if (c == 2) {
+                
                 choice = "Appointment At hospital";
-            }else if (c == 2) {
-                choice = "Online Consultaion Appointment";
-            }
-            else{ notivication();
-              System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
-            }
-            
-            
-            
-            if (choice.equals("Appointment At hospital")) {
-
                 System.out.println("--------------تفاصيل المواعيد المتاحة في المستشفى-------------");
 
                 for (int i = 0; i < at_hospital.size(); i++) {
@@ -49,8 +39,12 @@ public Appointment Appointment;
                 }
 
                 System.out.println("--------------------------------------------------------");
-            }else if (choice.equals("Online Consultaion Appointment")) {
-
+                at_hospital.clear();
+            }
+            
+            else if (c == 1) {
+                
+                choice = "Online Consultaion Appointment";
                 System.out.println("----------------تفاصيل مواعيد الاستشارة عبر الإنترنت------------");
                 for (int i = 0; i < Online.size(); i++) {
 
@@ -58,6 +52,12 @@ public Appointment Appointment;
                 }
 
                 System.out.println("---------------------------------------------------");
+                Online.clear();
+            }
+            
+            else{ notivication();
+            
+                System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
             }
 
         } while ((!(choice.equals("Online Consultaion Appointment")) && !(choice.equals("Appointment At hospital"))));
@@ -74,17 +74,16 @@ public Appointment Appointment;
         System.out.println("تكلفة الموعد = " + a.getCost());
         System.out.println("------------------------------------------------------------");
     }
-     @Override
+    
+    @Override
     public void print_Arabic_cost(int cost) {
+        
         int price = 150;
+        
         if (cost == price) {
             
             System.out.println("تمت طريقة الدفع بنجاح بمبلغ "+cost+"  ريال \n");
 
         } 
     }
-
- 
-    
-    }
-
+}

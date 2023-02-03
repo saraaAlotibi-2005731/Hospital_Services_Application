@@ -1,8 +1,5 @@
 package hospital_services_application;
 
-
-
-
 import java.io.*;
 import java.util.*;
 
@@ -16,7 +13,7 @@ public class Database {
     private static File info = new File("appointment_info.txt");
     private static File online = new File("appointment_online.txt");
     private static File arabic_info = new File("arabic_appointment_info.txt");
-    private static File arabic_online = new File("‏‏arabic_appointment_online.txt");
+    private static File arabic_online = new File("arabic_appointment_online.txt");
     
     private Database() {}
 
@@ -40,7 +37,7 @@ public class Database {
             appointment_info.add(reader.nextLine());
         }
         
-	return DB.appointment_info;
+	return appointment_info;
     }
     
     public static ArrayList get_appointment_online() throws FileNotFoundException {
@@ -63,7 +60,7 @@ public class Database {
             appointment_online.add(reader.nextLine());
         }
         
-	return DB.appointment_online;
+	return appointment_online;
     }
     
     public static ArrayList get_arabic_appointment_info() throws FileNotFoundException {
@@ -86,7 +83,7 @@ public class Database {
             arabic_appointment_info.add(reader.nextLine());
         }
         
-	return DB.arabic_appointment_info;
+	return arabic_appointment_info;
     }
     
     public static ArrayList get_arabic_appointment_online() throws FileNotFoundException {
@@ -98,17 +95,17 @@ public class Database {
 
         if (!arabic_online.exists()) {
 
-            System.out.println("appointment_online.txt file is not found, Please try again.");
+            System.out.println("arabic_appointment_online.txt file is not found, Please try again.");
             System.exit(0);
         }
 
         Scanner reader = new Scanner(arabic_online);
 
         while (reader.hasNext()) {
-
+            
             arabic_appointment_online.add(reader.nextLine());
         }
-
-        return DB.arabic_appointment_online;
+        
+        return arabic_appointment_online;
     }
 }
