@@ -1,6 +1,6 @@
 package hospital_services_application;
 
-import static hospital_services_application.Hospital_Services_Application_facade.notivication;
+import static hospital_services_application.Hospital_Services_Application_facade.notificationOn;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
