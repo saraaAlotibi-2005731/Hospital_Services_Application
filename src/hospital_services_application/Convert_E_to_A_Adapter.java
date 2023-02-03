@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Convert_E_to_A_Adapter implements Arabic {
 public Appointment Appointment;
    public String choice = "";
-   
+   public ArrayList at_hospital;
+   public ArrayList Online;
             
     @Override
     public String Print_Arabic() throws FileNotFoundException {
@@ -17,8 +18,8 @@ public Appointment Appointment;
         System.out.println("Converting process ...");
         
         Scanner r = new Scanner(System.in);
-        ArrayList at_hospital = Database.get_arabic_appointment_info();
-        ArrayList Online = Database.get_arabic_appointment_online();
+          at_hospital = Database.get_arabic_appointment_info();
+          Online = Database.get_arabic_appointment_online();
         
         do {
 
