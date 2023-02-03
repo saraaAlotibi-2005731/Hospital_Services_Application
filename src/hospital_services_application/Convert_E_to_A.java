@@ -56,8 +56,8 @@ public Appointment Appointment;
             }
             
             else{ notivication();
-            
-                System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
+              System.out.println("إشعارات تطبيق خدمات المستشفى قيد التشغيل ");
+               
             }
 
         } while ((!(choice.equals("Online Consultaion Appointment")) && !(choice.equals("Appointment At hospital"))));

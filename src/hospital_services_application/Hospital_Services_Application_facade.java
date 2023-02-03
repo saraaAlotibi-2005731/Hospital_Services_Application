@@ -403,12 +403,12 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
 
         if (a instanceof OnlineConsultaionAppointment) {
 
-            a.cost(cost);
-            a.reservationInfo();
+            translator.print_Arabic_cost(cost);
+             translator.Print_Arabic_reservation(a);
         } else if (a2 instanceof AppointmentAtHospital) {
 
-            a2.cost(cost);
-            a2.reservationInfo();
+             translator.print_Arabic_cost(cost);
+             translator.Print_Arabic_reservation(a);
         }
     }
 }
