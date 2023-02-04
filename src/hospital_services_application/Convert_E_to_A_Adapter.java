@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Convert_E_to_A_Adapter implements Arabic {
-public Appointment Appointment;
-   public String choice = "";
-   public ArrayList at_hospital;
-   public ArrayList Online;
-            
+    
+    public Appointment Appointment;
+    public String choice = "";
+    private static Database DB = Database.getDB();
+    private static ArrayList list;
+    
     @Override
     public String Print_Arabic() throws FileNotFoundException {
         
         System.out.println("Converting process ...");
         
         Scanner r = new Scanner(System.in);
-          at_hospital = Database.get_arabic_appointment_info();
-          Online = Database.get_arabic_appointment_online();
+          
+          
         
         do {
 
@@ -36,27 +37,28 @@ public Appointment Appointment;
                 
                 choice = "Appointment At hospital";
                 System.out.println("--------------تفاصيل المواعيد المتاحة في المستشفى-------------");
+                list = DB.get_arabic_appointment_info();
+                for (int i = 0; i < list.size(); i++) {
 
-                for (int i = 0; i < at_hospital.size(); i++) {
-
-                    System.out.println(at_hospital.get(i));
+                    System.out.println(list.get(i));
                 }
 
                 System.out.println("--------------------------------------------------------");
-                at_hospital.clear();
+                list.clear();
             }
             
             else if (c == 1) {
                 
                 choice = "Online Consultaion Appointment";
                 System.out.println("----------------تفاصيل مواعيد الاستشارة عبر الإنترنت------------");
-                for (int i = 0; i < Online.size(); i++) {
+                list = DB.get_arabic_appointment_online();
+                for (int i = 0; i < list.size(); i++) {
 
-                    System.out.println(Online.get(i));
+                    System.out.println(list.get(i));
                 }
 
                 System.out.println("---------------------------------------------------");
-                Online.clear();
+                list.clear();
             }
             
             else if (c == 3){ notificationOn();
@@ -78,7 +80,7 @@ public Appointment Appointment;
             
         System.out.println("شكرا لك  :) ");
         System.out.println("--------------معلومات الحجز------------------------------");
-        System.out.println("رقم الموعد: " +a.getAppointmentID() + " أضيف إلى ملف التعريف الخاص بك");
+        System.out.println("رقم الموعد: " + a.getAppointmentID() + " أضيف إلى ملف التعريف الخاص بك");
         System.out.println("نوع الموعد: " + a.getType());
         System.out.println("تكلفة الموعد = " + a.getCost());
         System.out.println("------------------------------------------------------------");

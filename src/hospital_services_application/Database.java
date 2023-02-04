@@ -17,59 +17,53 @@ public class Database {
     
     private Database() {}
 
-    public static ArrayList get_appointment_info() throws FileNotFoundException {
+    public static Database getDB(){
         
         if(DB == null){
             
             DB = new Database();
     	}
-	
-        if (!info.exists()) {
-            
-            System.out.println("appointment_info.txt file is not found, Please try again.");
-            System.exit(0);
-        }
         
-        Scanner reader = new Scanner(info);
+        return DB;
+    } 
+    public ArrayList get_appointment_info() throws FileNotFoundException {
         
-        while (reader.hasNext()) {
-            
-            appointment_info.add(reader.nextLine());
-        }
-        
+            if (!info.exists()) {
+
+                System.out.println("appointment_info.txt file is not found, Please try again.");
+                System.exit(0);
+            }
+
+            Scanner reader = new Scanner(info);
+
+            while (reader.hasNext()) {
+
+                appointment_info.add(reader.nextLine());
+            }
+    	
 	return appointment_info;
     }
     
-    public static ArrayList get_appointment_online() throws FileNotFoundException {
+    public ArrayList get_appointment_online() throws FileNotFoundException {
         
-        if(DB == null){
-            
-            DB = new Database();
-    	}
+            if (!online.exists()) {
+
+                System.out.println("appointment_online.txt file is not found, Please try again.");
+                System.exit(0);
+            }
+
+            Scanner reader = new Scanner(online);
+
+            while (reader.hasNext()) {
+
+                appointment_online.add(reader.nextLine());
+            }
 	
-        if (!online.exists()) {
-            
-            System.out.println("appointment_online.txt file is not found, Please try again.");
-            System.exit(0);
-        }
-        
-        Scanner reader = new Scanner(online);
-        
-        while (reader.hasNext()) {
-            
-            appointment_online.add(reader.nextLine());
-        }
-        
-	return appointment_online;
+        return appointment_online;
     }
     
-    public static ArrayList get_arabic_appointment_info() throws FileNotFoundException {
+    public ArrayList get_arabic_appointment_info() throws FileNotFoundException {
         
-        if(DB == null){
-            
-            DB = new Database();
-    	}
-	
         if (!arabic_info.exists()) {
             
             System.out.println("arabic_appointment_info.txt file is not found, Please try again.");
@@ -86,12 +80,7 @@ public class Database {
 	return arabic_appointment_info;
     }
     
-    public static ArrayList get_arabic_appointment_online() throws FileNotFoundException {
-
-        if (DB == null) {
-
-            DB = new Database();
-        }
+    public ArrayList get_arabic_appointment_online() throws FileNotFoundException {
 
         if (!arabic_online.exists()) {
 

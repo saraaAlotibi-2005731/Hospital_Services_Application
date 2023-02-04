@@ -2,16 +2,15 @@ package hospital_services_application;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.*;
+import java.util.*;
+import java.util.logging.*;
 
 public class Hospital_Services_Application_facade extends javax.swing.JFrame {
     private ImageIcon image;
     private JLabel lablel;
-    private static ArrayList DB;
+    private static Database DB = Database.getDB();
+    private static ArrayList list;
     
     public Hospital_Services_Application_facade() {
         initComponents();
@@ -260,42 +259,42 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
 
     public static void database_record() throws FileNotFoundException {
        
-        DB = Database.get_appointment_info();
+        list = DB.get_appointment_info();
 
         System.out.println("--------------Appointment At hospital INFO-------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
         
-        DB.clear();
-        DB = Database.get_appointment_online();
+        list.clear();
+        list = DB.get_appointment_online();
         
         System.out.println("----------------Online consultation INFO------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
         
-        DB.clear();
-        DB = Database.get_arabic_appointment_info();
+        list.clear();
+        list = DB.get_arabic_appointment_info();
         
         System.out.println("--------------تفاصيل المواعيد المتاحة في المستشفى-------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
         
-        DB.clear();
-        DB = Database.get_arabic_appointment_online();
+        list.clear();
+        list = DB.get_arabic_appointment_online();
         
         System.out.println("----------------تفاصيل مواعيد الاستشارة عبر الإنترنت------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
         
-        DB.clear();
+        list.clear();
     }
     
     public static void notificationOn() {
@@ -315,12 +314,12 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         Scanner rr = new Scanner(System.in);
         int appointmentID = -1;
         int cost = 0;
-        DB = Database.get_appointment_online();
+        list = DB.get_appointment_online();
         
         System.out.println("----------------Online consultation INFO------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
 
         System.out.println("---------------------------------------------------");
@@ -349,7 +348,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             a.reservationInfo();
         }
         
-        DB.clear();
+        list.clear();
     }
     
     public static void AppointmentAtHospitalINFO() throws FileNotFoundException {
@@ -357,12 +356,12 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         Scanner rr = new Scanner(System.in);
         int appointmentID = -1;
         int cost = 0;
-        DB = Database.get_appointment_info();
+        list = DB.get_appointment_info();
         
         System.out.println("--------------Appointment At hospital INFO-------------");
-        for (int i = 0; i < DB.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(DB.get(i));
+            System.out.println(list.get(i));
         }
         System.out.println("--------------------------------------------------------");
 
@@ -390,7 +389,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             a.reservationInfo();
         }
 
-        DB.clear();
+        list.clear();
     }
     
     public static void Convert_Appointment() throws FileNotFoundException {
@@ -426,11 +425,12 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         if (a instanceof OnlineConsultaionAppointment) {
 
             translator.print_Arabic_cost(cost);
-             translator.Print_Arabic_reservation(a);
+            translator.Print_Arabic_reservation(a);
+            
         } else if (a2 instanceof AppointmentAtHospital) {
 
-             translator.print_Arabic_cost(cost);
-             translator.Print_Arabic_reservation(a);
+            translator.print_Arabic_cost(cost);
+            translator.Print_Arabic_reservation(a);
         }
     }
 }
