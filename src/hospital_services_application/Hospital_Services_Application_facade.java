@@ -341,7 +341,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             System.out.print("Enter your total cost: ");
             cost = rr.nextInt();
         }
-        BookingAnAppointment s1 = new BookingAnAppointment();
+        BookingFactory s1 = new BookingFactory();
         Appointment a = s1.selection("Online Consultaion Appointment", appointmentID, cost);
 
         if (a instanceof OnlineConsultaionAppointment) {
@@ -382,11 +382,10 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             System.out.print("Enter your total cost: ");
             cost = rr.nextInt();
         }
-        BookingAnAppointment s1 = new BookingAnAppointment();
+        BookingFactory s1 = new BookingFactory();
         Appointment a = s1.selection("Appointment At hospital", appointmentID, cost);
 
         if (a instanceof AppointmentAtHospital) {
-
             a.cost(cost);
             a.reservationInfo();
         }
@@ -420,7 +419,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             cost = rr.nextInt();
         }
         choice = second_choice;
-        BookingAnAppointment s1 = new BookingAnAppointment();
+        BookingFactory s1 = new BookingFactory();
         Appointment a = s1.selection(choice, appointmentID, cost);
         Appointment a2 = s1.selection(choice, appointmentID, cost);
 
