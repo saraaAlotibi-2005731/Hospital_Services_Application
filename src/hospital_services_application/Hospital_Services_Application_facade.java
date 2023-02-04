@@ -1,14 +1,10 @@
 package hospital_services_application;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
 
 public class Hospital_Services_Application_facade extends javax.swing.JFrame {
-    private ImageIcon image;
-    private JLabel lablel;
     private static Database DB = Database.getDB();
     private static ArrayList list;
     
@@ -77,7 +73,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setText("Database (Singeltone)");
+        jButton5.setText("Database (Singleton)");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -100,7 +96,6 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110))
                     .addGroup(jPanel1Layout.createSequentialGroup()
