@@ -393,7 +393,7 @@ public class Hospital_Services_Application_facade extends javax.swing.JFrame {
         int appointmentID = -1;
         int cost = 0;
         String second_choice = "";
-        Convert_E_to_A_Adapter translator = new Convert_E_to_A_Adapter();
+        Arabic translator = new Convert_E_to_A_Adapter();
         second_choice = translator.Print_Arabic();
 
         do {
